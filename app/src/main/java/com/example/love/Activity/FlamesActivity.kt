@@ -18,7 +18,10 @@ import android.graphics.Typeface
 import android.util.TypedValue
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import android.view.LayoutInflater
+import android.widget.ImageView
 import com.example.love.R
+import kotlinx.android.synthetic.main.dialog.view.*
 
 
 class FlamesActivity : AppCompatActivity() {
@@ -27,7 +30,6 @@ class FlamesActivity : AppCompatActivity() {
     internal lateinit var edit_yourName: TextInputEditText
     internal lateinit var edit_partnerName: TextInputEditText
     internal lateinit var btn_calculate: Button
-    internal lateinit var text_flamesResult: TextView
 
     internal var FLAMES = "FLAMES"
     internal var arr_FLAMES = FLAMES.toCharArray()
@@ -52,7 +54,6 @@ class FlamesActivity : AppCompatActivity() {
         edit_partnerName = findViewById(R.id.input_partner_name) as TextInputEditText
 
         btn_calculate = findViewById(R.id.button_calculate) as Button
-        text_flamesResult = findViewById(R.id.text_flames_result) as TextView
 
         btn_calculate.setOnClickListener(View.OnClickListener {
             // Hide Soft Keyboard onClick
@@ -80,31 +81,26 @@ class FlamesActivity : AppCompatActivity() {
     fun resetValues() {
         FLAMES = getString(R.string.FLAMES)
         arr_FLAMES = FLAMES.toCharArray()
-        text_flamesResult.text = ""
     }
 
-    fun alert(ans:String) {
-        val dialog = AlertDialog.Builder(this)
-        val title = TextView(this)
-        title.setTextColor(ContextCompat.getColor(this, android.R.color.black))
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
-        title.typeface = Typeface.DEFAULT_BOLD
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        lp.setMargins(0, 20, 0, 0)
-        title.setPadding(0, 30, 0, 0)
-        title.layoutParams = lp
-        title.text = ans
-        title.gravity = Gravity.CENTER
-        dialog.setCustomTitle(title)
-        dialog.setMessage("OMG")
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("OK", { dialog, which -> })
-        dialog.show()
-
+    fun alert(ans: String, img: Int) {
+        //Inflate the dialog with custom view
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog, null)
+        //AlertDialogBuilder
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle(ans)
+        mDialogView.image.setImageResource(img)
+        //show dialog
+        val mAlertDialog = mBuilder.show()
+        //login button click of custom layout
+        //cancel button click of custom layout
+        mDialogView.dialogCancelBtn.setOnClickListener {
+            //dismiss dialog
+            mAlertDialog.dismiss()
+        }
     }
+
 
     fun processName() {
         yourNameDisplay = edit_yourName.text!!.toString()
@@ -159,16 +155,15 @@ class FlamesActivity : AppCompatActivity() {
 
     fun displayFlames() {
 
-        text_flamesResult.visibility = View.VISIBLE
         when (arr_FLAMES[0]) {
-            'F' -> alert("Friend")
-            'L' -> alert("lovers!")
+            'F' -> alert("Friend", R.drawable.ic_launcher_background)
+            'L' -> alert("lovers!", R.drawable.ic_launcher_background)
             'A' -> alert(
-                "affectionate towards each other!"
+                "affectionate towards each other!", R.drawable.ic_launcher_background
             )
-            'M' -> alert("married!")
-            'E' -> alert("enemies!")
-            'S' -> alert("like siblings!")
+            'M' -> alert("married!", R.drawable.ic_launcher_background)
+            'E' -> alert("enemies!", R.drawable.ic_launcher_background)
+            'S' -> alert("like siblings!", R.drawable.ic_launcher_background)
         }
     }
 }

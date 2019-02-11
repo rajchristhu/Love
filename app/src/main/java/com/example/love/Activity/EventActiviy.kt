@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.example.love.Fragment.Menu
 import com.example.love.Fragment.buttonClick
 import com.example.love.R
 
@@ -21,7 +22,7 @@ class EventActiviy : AppCompatActivity() {
             finish()
         } else {
             val fragment: Fragment = when (arrayB) {
-                1 -> buttonClick()
+                1 -> Menu()
                 2 -> buttonClick()
                 3 -> buttonClick()
                 else -> buttonClick()
