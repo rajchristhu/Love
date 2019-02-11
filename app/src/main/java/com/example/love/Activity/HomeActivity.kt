@@ -15,7 +15,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.example.love.R.layout.activity_home)
         viewPager = findViewById<ViewPager>(R.id.viewPager)
-
         myCustomPagerAdapter = ViewpagerAdapter(this@HomeActivity, images)
         viewPager!!.adapter = myCustomPagerAdapter
     }

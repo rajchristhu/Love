@@ -1,8 +1,10 @@
 package com.example.love.Activity
+
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.example.love.Fragment.Flames
+import com.example.love.Fragment.buttonClick
 import com.example.love.R
 
 
@@ -13,17 +15,22 @@ class EventActiviy : AppCompatActivity() {
         setContentView(R.layout.activity_event)
         val extras = intent.extras
         val arrayB = extras!!.getInt("numbers")
-        val fragment: Fragment = when (arrayB) {
-            0 -> Flames()
-            1 -> Flames()
-            2 -> Flames()
-            3 -> Flames()
-            else -> Flames()
+        if (arrayB == 0) {
+            val intent = Intent(applicationContext, FlamesActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            val fragment: Fragment = when (arrayB) {
+                1 -> buttonClick()
+                2 -> buttonClick()
+                3 -> buttonClick()
+                else -> buttonClick()
+            }
+            val fragmentManager = supportFragmentManager
+            fragmentManager
+                .beginTransaction()
+                .replace(R.id.frame, fragment)
+                .commit()
         }
-        val fragmentManager = supportFragmentManager
-        fragmentManager
-            .beginTransaction()
-            .replace(R.id.frame, fragment)
-            .commit()
     }
 }

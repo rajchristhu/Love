@@ -11,6 +11,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activity.FlamesActivity">
+        </activity>
         <activity android:name=".Activity.EventActiviy">
         </activity>
         <activity android:name=".Activity.HomeActivity">

@@ -41,17 +41,13 @@ class ViewpagerAdapter(internal var context: Context, internal var images: IntAr
 
         //listening to image click
         imageView.setOnClickListener {
-            Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show()
-
                 val i = Intent(context, EventActiviy::class.java)
                 i.putExtra("numbers", position)
                 context.startActivity(i)
-
         }
 
         return itemView
     }
-
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as LinearLayout)
     }
