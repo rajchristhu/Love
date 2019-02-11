@@ -9,9 +9,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
-import com.example.love.R
 import org.apache.commons.lang3.ArrayUtils
 import java.text.MessageFormat
+import android.content.DialogInterface
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.graphics.Typeface
+import android.util.TypedValue
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
+import com.example.love.R
+
 
 class FlamesActivity : AppCompatActivity() {
     internal lateinit var layout_yourName: TextInputLayout
@@ -56,6 +64,7 @@ class FlamesActivity : AppCompatActivity() {
 
 
 
+
             resetValues()
 
             if (edit_yourName.text!!.toString().trim { it <= ' ' }.isEmpty()) return@OnClickListener
@@ -72,6 +81,29 @@ class FlamesActivity : AppCompatActivity() {
         FLAMES = getString(R.string.FLAMES)
         arr_FLAMES = FLAMES.toCharArray()
         text_flamesResult.text = ""
+    }
+
+    fun alert(ans:String) {
+        val dialog = AlertDialog.Builder(this)
+        val title = TextView(this)
+        title.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+        title.typeface = Typeface.DEFAULT_BOLD
+        val lp = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        lp.setMargins(0, 20, 0, 0)
+        title.setPadding(0, 30, 0, 0)
+        title.layoutParams = lp
+        title.text = ans
+        title.gravity = Gravity.CENTER
+        dialog.setCustomTitle(title)
+        dialog.setMessage("OMG")
+        dialog.setCancelable(false)
+        dialog.setPositiveButton("OK", { dialog, which -> })
+        dialog.show()
+
     }
 
     fun processName() {
@@ -126,21 +158,17 @@ class FlamesActivity : AppCompatActivity() {
     }
 
     fun displayFlames() {
+
         text_flamesResult.visibility = View.VISIBLE
         when (arr_FLAMES[0]) {
-            'F' -> text_flamesResult.text =
-                    MessageFormat.format("friends!")
-            'L' -> text_flamesResult.text =
-                    MessageFormat.format("lovers!")
-            'A' -> text_flamesResult.text =
-                    MessageFormat.format(
-                        "affectionate towards each other!")
-            'M' -> text_flamesResult.text =
-                    MessageFormat.format("married!")
-            'E' -> text_flamesResult.text =
-                    MessageFormat.format("enemies!")
-            'S' -> text_flamesResult.text =
-                    MessageFormat.format("like siblings!")
+            'F' -> alert("Friend")
+            'L' -> alert("lovers!")
+            'A' -> alert(
+                "affectionate towards each other!"
+            )
+            'M' -> alert("married!")
+            'E' -> alert("enemies!")
+            'S' -> alert("like siblings!")
         }
     }
 }
