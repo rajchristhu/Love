@@ -89,8 +89,10 @@ class FlamesActivity : AppCompatActivity() {
         //AlertDialogBuilder
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle(ans)
+            .setIcon(R.drawable.cc)
+            .setTitle("Result")
         mDialogView.image.setImageResource(img)
+        mDialogView.texts.text = ans
         //show dialog
         val mAlertDialog = mBuilder.show()
         //login button click of custom layout
@@ -156,13 +158,13 @@ class FlamesActivity : AppCompatActivity() {
     fun displayFlames() {
 
         when (arr_FLAMES[0]) {
-            'F' -> alert("Friend", R.drawable.ic_launcher_background)
-            'L' -> alert("lovers!", R.drawable.ic_launcher_background)
+            'F' -> alert("Friend", R.drawable.l)
+            'L' -> alert("lovers!", R.drawable.f)
             'A' -> alert(
-                "affectionate towards each other!", R.drawable.ic_launcher_background
+                "affectionate towards each other!", R.drawable.a
             )
-            'M' -> alert("married!", R.drawable.ic_launcher_background)
-            'E' -> alert("enemies!", R.drawable.ic_launcher_background)
+            'M' -> alert("married!", R.drawable.m)
+            'E' -> alert("enemies!", R.drawable.e)
             'S' -> alert("like siblings!", R.drawable.ic_launcher_background)
         }
     }

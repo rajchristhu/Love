@@ -1,50 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+              android:layout_height="match_parent"
               android:orientation="vertical"
+              android:gravity="center"
               android:background="#e2e5e4"
               android:layout_gravity="center"
-                tools:context=".Fragment.Menu">
+              android:padding="15dp"
+              tools:context=".Fragment.Menu">
 
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_gravity="center"
-            android:layout_width="250dp"
-            android:layout_height="130dp"
-            card_view:cardElevation="20dp"
-            card_view:cardPreventCornerOverlap="true"
-            android:layout_marginTop="60dp"
-            card_view:cardCornerRadius="6dp">
-        <Button android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            android:layout_height="100dp"
+            android:id="@+id/cv"
+    >
+
+        <RelativeLayout
+                android:layout_width="match_parent"
                 android:background="@color/dot_dark_screen2"
-                android:text="Singles"
-                android:textColor="#e2e5e4"
-                android:textSize="30sp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:padding="16dp"
+        >
+
+            <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/single"
+                    android:id="@+id/person_photo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+            />
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:id="@+id/person_age"
+                    android:textColor="#FFF"
+                    android:layout_centerInParent="true"
+                    android:text="Single"
+                    android:layout_toRightOf="@+id/person_photo"
+            />
+
+        </RelativeLayout>
+
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view1"
-            android:layout_below="@+id/card_view"
-            android:layout_width="250dp"
-            card_view:cardElevation="20dp"
-            card_view:cardPreventCornerOverlap="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:layout_height="130dp"
-            card_view:cardCornerRadius="6dp">
-        <Button android:layout_width="match_parent"
-                android:gravity="center"
-                android:text="Commited"
-                android:textSize="30sp"
-                android:background="@color/bg_screen1"
-                android:textColor="#e2e5e4"
-                android:layout_height="match_parent"/>
-    </android.support.v7.widget.CardView>
+            android:layout_width="match_parent"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_height="100dp"
+            android:id="@+id/cv1"
+    >
 
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/bg_screen1"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+        >
+
+            <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/comit"
+                    android:id="@+id/com"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+            />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/comn"
+                    android:layout_centerInParent="true"
+                    android:textColor="#FFF"
+                    android:text="Committed"
+                    android:layout_toRightOf="@+id/com"
+                    android:textSize="30sp"
+            />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
