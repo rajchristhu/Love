@@ -30,6 +30,7 @@ class FlamesActivity : AppCompatActivity() {
     internal lateinit var edit_yourName: TextInputEditText
     internal lateinit var edit_partnerName: TextInputEditText
     internal lateinit var btn_calculate: Button
+    internal lateinit var clear: Button
 
     internal var FLAMES = "FLAMES"
     internal var arr_FLAMES = FLAMES.toCharArray()
@@ -47,14 +48,19 @@ class FlamesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flames)
 
-        layout_yourName = findViewById(R.id.input_layout_your_name) as TextInputLayout
-        layout_partnerName = findViewById(R.id.input_layout_partner_name) as TextInputLayout
+        layout_yourName = findViewById<TextInputLayout>(R.id.input_layout_your_name)
+        layout_partnerName = findViewById<TextInputLayout>(R.id.input_layout_partner_name)
 
-        edit_yourName = findViewById(R.id.input_your_name) as TextInputEditText
-        edit_partnerName = findViewById(R.id.input_partner_name) as TextInputEditText
+        edit_yourName = findViewById(R.id.input_your_name)
+        edit_partnerName = findViewById(R.id.input_partner_name)
 
-        btn_calculate = findViewById(R.id.button_calculate) as Button
+        btn_calculate = findViewById<Button>(R.id.button_calculate)
+        clear = findViewById<Button>(R.id.clear)
+        clear.setOnClickListener {
+            edit_yourName.setText("")
+            edit_partnerName.setText("")
 
+        }
         btn_calculate.setOnClickListener(View.OnClickListener {
             // Hide Soft Keyboard onClick
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -62,9 +68,6 @@ class FlamesActivity : AppCompatActivity() {
                 if (null == currentFocus) null else currentFocus!!.windowToken,
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
-
-
-
 
             resetValues()
 
@@ -91,6 +94,7 @@ class FlamesActivity : AppCompatActivity() {
             .setView(mDialogView)
             .setIcon(R.drawable.cc)
             .setTitle("Result")
+        mBuilder.setCancelable(false)
         mDialogView.image.setImageResource(img)
         mDialogView.texts.text = ans
         //show dialog
